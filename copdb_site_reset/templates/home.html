@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}copDB{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+{% else %}
+  <h1>You are not logged in</h1>
+  <div class="redirect-wrapper">
+    <div class="redirect">
+      <a href="{% url 'login' %}">Log In</a>
+    </div>
+  </div>
+  <div class="redirect-wrapper">
+    <div class="redirect-secondary">
+      <a href="{% url 'password_reset' %}">Reset Password</a>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}
